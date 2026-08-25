@@ -2,6 +2,7 @@
 
 import type { Session } from "@supabase/supabase-js";
 import { FormEvent, useEffect, useMemo, useState } from "react";
+import { assetUrl } from "./assets";
 import LoginPanel, { PasswordRecoveryPanel } from "./login-panel";
 import { isSupabaseConfigured, supabase } from "./supabase";
 
@@ -250,7 +251,7 @@ export default function Home() {
   if (!authReady) {
     return (
       <main className="auth-loading" role="status">
-        <img src="/europlus-logo-red.png" alt="EUROPLUS" />
+        <img src={assetUrl("/europlus-logo-red.png")} alt="EUROPLUS" />
         <span>Opening your secure workspace…</span>
       </main>
     );
@@ -480,7 +481,7 @@ export default function Home() {
   return (
     <main className="app-shell">
       <aside className={`sidebar ${mobileNav ? "open" : ""}`}>
-        <div className="brand"><div className="brand-lockup"><img src="/europlus-logo-red.png" alt="EUROPLUS" /><small>WORK COMMAND</small></div><button className="mobile-close" onClick={() => setMobileNav(false)}>×</button></div>
+        <div className="brand"><div className="brand-lockup"><img src={assetUrl("/europlus-logo-red.png")} alt="EUROPLUS" /><small>WORK COMMAND</small></div><button className="mobile-close" onClick={() => setMobileNav(false)}>×</button></div>
         <nav aria-label="Main navigation">
           {nav.map((item) => {
             const locked = item.id === "accounts" && !canAccessAccounts;

@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { appBasePath, assetUrl } from "./assets";
 import { isSupabaseConfigured, supabase } from "./supabase";
 
 export function PasswordRecoveryPanel({ onComplete }: { onComplete: () => void }) {
@@ -33,7 +34,7 @@ export function PasswordRecoveryPanel({ onComplete }: { onComplete: () => void }
   return (
     <main className="login-shell recovery-shell">
       <section className="login-story" aria-label="EUROPLUS password recovery">
-        <div className="login-logo-card"><img src="/europlus-logo-red.png" alt="EUROPLUS" /></div>
+        <div className="login-logo-card"><img src={assetUrl("/europlus-logo-red.png")} alt="EUROPLUS" /></div>
         <div className="login-story-copy"><p>SECURE ACCOUNT RECOVERY</p><h1>Choose a new password for Work Command.</h1><span>The reset link has confirmed your identity. Your new password will apply immediately.</span></div>
       </section>
       <section className="login-entry">
@@ -90,7 +91,7 @@ export default function LoginPanel({ onPreview }: { onPreview?: () => void }) {
     setLoading(true);
     setMessage("");
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: window.location.origin,
+      redirectTo: `${window.location.origin}${appBasePath}/`,
     });
     setLoading(false);
     setMessage(
@@ -102,7 +103,7 @@ export default function LoginPanel({ onPreview }: { onPreview?: () => void }) {
     <main className="login-shell">
       <section className="login-story" aria-label="EUROPLUS Work Command introduction">
         <div className="login-logo-card">
-          <img src="/europlus-logo-red.png" alt="EUROPLUS" />
+          <img src={assetUrl("/europlus-logo-red.png")} alt="EUROPLUS" />
         </div>
         <div className="login-story-copy">
           <p>PRIVATE OPERATIONS WORKSPACE</p>
@@ -131,7 +132,7 @@ export default function LoginPanel({ onPreview }: { onPreview?: () => void }) {
       <section className="login-entry">
         <div className="login-form-wrap">
           <div className="login-mobile-logo">
-            <img src="/europlus-logo-red.png" alt="EUROPLUS" />
+            <img src={assetUrl("/europlus-logo-red.png")} alt="EUROPLUS" />
           </div>
           <p className="login-kicker">EUROPLUS · WORK COMMAND</p>
           <h2>Welcome back.</h2>
